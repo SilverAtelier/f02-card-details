@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
+:root {
+  /*Font*/
+  --font-family: "Space Grotesk", sans-serif;
+  /*Primary*/
+  --err-color: hsl(0, 100%, 66%);
+
+  /*Neutral*/
+  --white: hsl(0, 0%, 100%);
+  --light-grayish-violet: hsl(270, 3%, 87%);
+  --dark-grayish-violet: hsl(279, 6%, 55%);
+  --very-dark-violet: hsl(278, 68%, 11%);
+}
+body {
+  background-color: #fff;
+  font-family: var(--font-family);
+  width: 100svw;
+  height: 100svh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.card-wrapper {
+  height: 100svh;
+  background-image: url(../images/bg-main-desktop.png);
+}
+.card {
+  z-index: -3;
+}
+.container-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.card-logo {
+  height: 60px;
+  width: 60px;
+  margin: 20px;
+}
+.card-logo  img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.card-details {
+  color: var(--white);
+  padding: 20px;
+}
+.card-details-upper {
+  width: 100%;
+}
+
+.card-details-lower {
+  font-size: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.card-number-front {
+  font-size: 24px;
+  text-align: justify;
+  text-justify: distribute-all-lines;
+  margin-bottom: 0;
+  letter-spacing: 3px;
+}
+.card-number-front::after {
+  content: "";
+  display: inline-flex;
+  width: 100%;
+}
+.card-holder {
+  float: left;
+  text-transform: uppercase;
+}
+.card-expiry {
+  float: right;
+}
+.card-front {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-back {
+  position: relative;
+  margin-top: 20px;
+  z-index: 2;
+}
+.card-number-back {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 49%;
+  left: 80%;
+}
+.card-number-back-text {
+  color: var(--white);
+}
+.card-front,
+.card-back {
+  position: relative;
+  height: 230px;
+  width: 400px;
+  background-color: transparent;
+  object-fit: cover;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+  border-radius: 10px;
+}
+.card-front > img:first-child,
+.card-back > img:first-child {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+.form-wrapper label {
+  color: var(--very-dark-violet);
+}
+.form-submit button {
+  background-color: var(--very-dark-violet);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 20px;
+  font-family: var(--font-family);
+}
+form input:focus {
+  outline: none;
+  background: linear-gradient(white, white) padding-box, linear-gradient(to right,hsl(249, 99%, 64%), hsl(278, 94%, 30%)) border-box;
+  border: solid 1px transparent;
+}
+.input-err{
+  border: solid 1px var(--err-color) !important;
+}
