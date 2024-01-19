@@ -1,0 +1,142 @@
+@media screen and (max-width: 480px) {
+  .container-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100svw;
+    height: 100svh;
+    overflow: hidden;
+  }
+  .card-logo {
+    height: 40px;
+    width: 40px;
+    margin: 20px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .card-wrapper {
+    width: 100svw;
+    height: 30svh;
+  }
+  .card-front,
+  .card-back {
+    height: 20svh;
+    width: 75svw;
+    margin-right: 20px;
+    margin-top: -5px;
+  }
+  .card-front {
+    order: 2;
+    z-index: 2;
+    transform: translate(-20px, -22px);
+  }
+  .card-number-back {
+    transform: translateY(-10px);
+  }
+  .card-back {
+    order: 1;
+    transform: translate(10svw, 5svh);
+  }
+  .card-wrapper {
+    background-image: url(../images/bg-main-mobile.png);
+  }
+  .card-details {
+    padding: 15px;
+  }
+  .card-details-lower {
+    font-size: 12px;
+    margin: 5px 0;
+    padding-right: 5px;
+  }
+  .card-number-front {
+    font-size: 16px;
+    letter-spacing: 3.25px;
+  }
+  .card-number-front::after {
+    content: none;
+  }
+  .card-number-back-text {
+    font-size: 12px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 25px;
+  }
+  form input {
+    margin-top: 5px;
+    height: 35px;
+    border-radius: 5px;
+    border: solid 1px var(--light-grayish-violet);
+    padding-left: 15px;
+    font-size: 14px;
+    font-weight: 550;
+    color: var(--very-dark-violet);
+  }
+  form input::placeholder {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--light-grayish-violet);
+  }
+  form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+  .form-wrapper {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+  }
+  .form-card-name,
+  .form-card-number,
+  .form-card-exp-cvc,
+  .form-card-exp-inputs,
+  .form-card-cvc {
+    display: flex;
+  }
+  .form-card-name,
+  .form-card-number {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .form-card-exp-cvc {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .form-card-exp,
+  .form-card-cvc {
+    width: 50%;
+  }
+  .form-card-cvc {
+    flex-direction: column;
+  }
+  .form-card-cvc > input {
+    width: 100%;
+  }
+  .form-card-exp input {
+    width: 50%;
+  }
+
+  .form-submit button {
+    height: 50px;
+    width: 100%;
+  }
+  .form-card-exp-inputs input[id="card-exp-month"],
+  .form-card-exp-inputs input[id="card-exp-year"] {
+    margin-right: 10px;
+  }
+  .form-card-cvc {
+    margin-top: 3px;
+    padding-right: 20px;
+  }
+  .form-card-cvc input {
+    margin-top: 0;
+  }
+}
