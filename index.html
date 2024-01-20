@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="./styles/tablet.css">
     <link rel="stylesheet" href="./styles/mobile.css">
 
-
     <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
     <style>
     .attribution { font-size: 11px; text-align: center; }
@@ -40,37 +39,42 @@
             </div>
           </div>
           <div class="card-back">
-            <img src="./images/bg-card-back.png" alt="" srcset="">
+            <img src="./images/bg-card-back.png" alt srcset>
             <div class="card-number-back">
               <span class="card-number-back-text">000</span>
             </div>
           </div>
         </div>
       </div>
-      <div class="form-wrapper">
+      <div class="form-wrapper hide">
         <form>
           <div class="form-card-name">
             <label for="card-holder">Cardholder Name</label>
-            <input type="text" name="card-holder" id="card-holder" placeholder="e.g. Jane Appleseed" required>
+            <input type="text" name="card-holder" id="card-holder"
+              placeholder="e.g. Jane Appleseed" required>
             <p class="err-text">Can't be blank</p>
           </div>
           <div class="form-card-number">
             <label for="card-number">Card Number</label>
-            <input type="text" name="card-number" id="card-number" placeholder="e.g. 1234 5678 9123 0000" required>
+            <input type="text" name="card-number" id="card-number"
+              placeholder="e.g. 1234 5678 9123 0000" required>
             <p class="err-text">Wrong format, numbers only</p>
           </div>
           <div class="form-card-exp-cvc">
             <div class="form-card-exp">
               <label for="card-exp">Exp. Date (MM/YY)</label>
               <div class="form-card-exp-inputs">
-                <input type="text" name="card-exp-month" id="card-exp-month" placeholder="MM" required>
-                <input type="text" name="card-exp-year" id="card-exp-year" placeholder="YY" required>
+                <input type="text" name="card-exp-month" id="card-exp-month"
+                  placeholder="MM" required>
+                <input type="text" name="card-exp-year" id="card-exp-year"
+                  placeholder="YY" required>
               </div>
               <p class="err-text">Can't be blank</p>
             </div>
             <div class="form-card-cvc">
               <label for="card-cvc">CVC</label>
-              <input type="text" name="card-cvc" id="card-cvc" placeholder="e.g. 123" required>
+              <input type="text" name="card-cvc" id="card-cvc"
+                placeholder="e.g. 123" required>
               <p class="err-text">Can't be blank</p>
             </div>
           </div>
@@ -84,6 +88,16 @@
             target="_blank">Frontend Mentor</a>. Coded by <a
             href="https://x.com/silver_atelier">SilverAtelier</a>.
         </div>
+      </div>
+      <div class="complete-wrapper">
+        <div class="complete-img">
+          <img src="./images/icon-complete.svg" alt="complete">
+        </div>
+        <div class="complete-text">
+          <h2>THANK YOU!</h2>
+          <p>We've added your card details</p>
+        </div>
+        <button class="complete-btn">Continue</button>
       </div>
     </div>
 
