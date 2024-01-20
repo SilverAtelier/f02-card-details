@@ -148,6 +148,12 @@ form input:focus {
 .input-err {
   border: solid 1px var(--err-color) !important;
 }
+.err-text{
+  color: var(--err-color);
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
 form {
   display: flex;
   flex-direction: column;
@@ -196,9 +202,10 @@ form input {
 .form-card-cvc {
   width: 50%;
 }
-.form-card-exp-inputs {
+.form-card-exp-inputs{
   flex-direction: row;
 }
+
 .form-card-exp-inputs input {
   width: 50%;
 }
