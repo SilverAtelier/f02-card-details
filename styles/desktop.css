@@ -24,6 +24,8 @@ body {
 .card-wrapper {
   height: 100svh;
   background-image: url(../images/bg-main-desktop.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .card {
   z-index: -3;
