@@ -26,9 +26,25 @@ body {
   background-image: url(../images/bg-main-desktop.png);
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
 }
 .card {
-  z-index: -3;
+  z-index: 1;
+}
+@media screen and (min-width: 1080px) {
+  .card {
+    --s: 10svw;
+    transform: translateX(var(--s));
+  }
+  form {
+    max-width: 350px;
+    margin: 0 auto 0 calc(50% - 175px);
+  }
+  .card-back {
+    transform: translateX(calc(var(--s) / 1.5));
+  }
 }
 .container-wrapper {
   height: 100svh;
@@ -150,7 +166,7 @@ form input:focus {
 .input-err {
   border: solid 1px var(--err-color) !important;
 }
-.err-text{
+.err-text {
   color: var(--err-color);
   font-size: 12px;
   margin-top: 5px;
@@ -162,14 +178,14 @@ form {
   padding: 0 25px;
   justify-content: center;
   height: 100%;
-  width: 350px;
 }
 form label {
   font-size: 14px;
   margin-bottom: 5px;
   text-transform: uppercase;
 }
-form label, .form-card-exp{
+form label,
+.form-card-exp {
   margin-top: 20px;
 }
 form input::placeholder {
@@ -204,7 +220,7 @@ form input {
 .form-card-cvc {
   width: 50%;
 }
-.form-card-exp-inputs{
+.form-card-exp-inputs {
   flex-direction: row;
 }
 
