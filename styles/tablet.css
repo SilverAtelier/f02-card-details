@@ -14,6 +14,9 @@
   .card-back {
     transform: translateX(calc(var(--s) * 1.5));
   }
+  .complete-btn{
+    max-width: 260px;
+  }
 }
 @media screen and (min-width: 900px) and (max-width: 1080px) {
   .card {
@@ -31,5 +34,4 @@
   .card-back {
     transform: translateX(calc(var(--s) * 1.5));
   }
-  
 }

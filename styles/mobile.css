@@ -120,4 +120,7 @@
   form label, .form-card-exp{
     margin-top: 20px;
   }
+  .hide{
+    display: none;
+  }
 }
