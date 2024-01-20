@@ -1,4 +1,4 @@
-# Interactive card details form solution
+# Interactive card details form
 
 This is a solution to the [Interactive card details form challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-card-details-form-XpS8cKZDWw). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
@@ -30,8 +30,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](./images/Screenshot%20from%202024-01-20%2017-08-08.png)
-![](./images/Screenshot%20from%202024-01-20%2017-07-07.png)
+![](./src/assets/screenshots/Screenshot%20from%202024-01-20%2017-08-08.png)
+![](./src/assets/screenshots/Screenshot%20from%202024-01-20%2017-07-07.png)
 ![](./design/mobile-design.jpg)
 ![](./design/complete-state-mobile.jpg)
 
