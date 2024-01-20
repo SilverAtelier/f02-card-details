@@ -29,11 +29,12 @@ body {
   background-position: center;
   display: flex;
   align-items: center;
+  max-width: 500px;
 }
 .card {
   z-index: 1;
 }
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 900px) {
   .card {
     --s: 10svw;
     transform: translateX(var(--s));
