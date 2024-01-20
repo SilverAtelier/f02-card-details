@@ -15,3 +15,21 @@
     transform: translateX(calc(var(--s) * 1.5));
   }
 }
+@media screen and (min-width: 900px) and (max-width: 1080px) {
+  .card {
+    --s: 5svw;
+    transform: translateX(var(--s));
+  }
+  .card-front,
+  .card-back {
+    width: 370px;
+  }
+  form{
+    max-width: 350px;
+    margin: 0 auto 0 calc(50% - 175px);
+  }
+  .card-back {
+    transform: translateX(calc(var(--s) * 1.5));
+  }
+  
+}

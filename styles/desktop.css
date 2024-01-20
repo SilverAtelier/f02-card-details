@@ -34,7 +34,7 @@ body {
 .card {
   z-index: 1;
 }
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1080px) {
   .card {
     --s: 10svw;
     transform: translateX(var(--s));
