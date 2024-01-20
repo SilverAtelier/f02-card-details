@@ -72,11 +72,13 @@
   }
   form {
     display: flex;
-    padding: 0 15px;
+    padding: 0;
     flex-direction: column;
     justify-content: flex-start;
     margin-top: 10svh;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
+    margin-right: 10px;
+    margin-left: 10px;
   }
   form input {
     margin-top: 5px;
