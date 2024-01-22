@@ -76,7 +76,7 @@
     justify-content: flex-start;
     box-sizing: border-box;
     padding: 0 15px;
-    padding-top: 15svh;
+    padding-top: 6.5em;
   }
   form input {
     margin-top: 5px;
