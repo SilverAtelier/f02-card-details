@@ -1,5 +1,8 @@
 import { useState} from 'react';
 import './styles/App.css';
+import './styles/index.css';
+import './styles/mobile.css';
+import './styles/tablet.css';
 import Form from './components/Form/Form';
 import Cards from './components/Cards/Cards';
 import Complete from './components/Complete/Complete';
