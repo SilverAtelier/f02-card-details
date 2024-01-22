@@ -15,7 +15,7 @@ const Form: React.FC<FormProps> = ({ onUpdate, onSub }) => {
         cardExpYear: "",
         cardCvc: "",
     });
-
+    const [cardNumber, setCardNumber] = useState<string>("");
     const [errors, setErrors] = useState<Partial<UserDetails>>({});
 
     const checkFields = () => {
@@ -57,6 +57,8 @@ const Form: React.FC<FormProps> = ({ onUpdate, onSub }) => {
             newErrors.cardCvc = "Can't be blank";
         }else if (!regex.test(cardCvc)) {
             newErrors.cardCvc = "Numbers Only";
+        }else if (cardCvc.length < 3) {
+            newErrors.cardCvc = "Invalid CVC";
         }
 
         setErrors(newErrors);
@@ -72,9 +74,22 @@ const Form: React.FC<FormProps> = ({ onUpdate, onSub }) => {
             // console.log(formData);
         }
     };
+    const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const cardNumber = e.target.value.replace(/\s/g, "");
+        const name = e.target.name;
+        setCardNumber(cardNumber);
+        setFormData({
+            ...formData,
+            [name]: cardNumber,
+        });
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+        if (name === "cardNumber") {
+            handleCardNumberChange(e);
+            return;
+        }
         setFormData({
             ...formData,
             [name]: value,
@@ -108,6 +123,7 @@ const Form: React.FC<FormProps> = ({ onUpdate, onSub }) => {
                         id="card-number"
                         placeholder="e.g. 1234 5678 9123 0000"
                         onChange={handleChange}
+                        value={cardNumber}
                         maxLength={16}
                         required
                     />
