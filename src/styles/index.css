@@ -42,6 +42,7 @@ body {
   form {
     max-width: 350px;
     margin: 0 auto 0 calc(50% - 175px);
+    padding: 0 25px;
   }
   .card-back {
     transform: translateX(calc(var(--s) / 1.5));
@@ -176,7 +177,6 @@ form input:focus {
 form {
   display: flex;
   flex-direction: column;
-  padding: 0 25px;
   justify-content: center;
   height: 100%;
 }
