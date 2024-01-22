@@ -11,7 +11,7 @@ const Complete = () => {
                 <h2 className={style.completeWrapper_h2}>THANK YOU!</h2>
                 <p className={style.completeWrapper_p}>We've added your card details</p>
             </div>
-            <Button classname='completeBtn' text='Complete'/>
+            <Button classname='completeBtn' text='Complete' type='button'/>
         </div>
     );
 };

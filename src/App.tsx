@@ -1,27 +1,37 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import './styles/App.css';
-// import Complete from './components/Complete/Complete';
 import Form from './components/Form/Form';
 import Cards from './components/Cards/Cards';
-import { CARD_DEFAULTS } from './constants';
+import Complete from './components/Complete/Complete';
 import { UserDetails } from './constants';
+
 function App() {
-  const [formData, setFormData] = useState<UserDetails>({
-    cardHolder: CARD_DEFAULTS.cardHolder,
-    cardNumber: CARD_DEFAULTS.cardNumber,
-    cardExpMonth: CARD_DEFAULTS.cardExpMonth,
-    cardExpYear: CARD_DEFAULTS.cardExpYear,
-    cardCvc: CARD_DEFAULTS.cardCvc,
+  const [card, setCard] = useState<UserDetails>({
+    cardHolder: '',
+    cardNumber: '',
+    cardExpMonth: '',
+    cardExpYear: '',
+    cardCvc: '',
   });
-  const handleSubmit = (formData: UserDetails) => {
-    setFormData(formData);
+  const [submitted, setSubmitted] = useState(false);
+  const handleUpdate = (cardData: UserDetails) => {
+    const cardNumber = cardData.cardNumber
+      .toString()
+      .replace(/\s/g, '')
+      .replace(/(.{4})/g, '$1 ');
+    cardData.cardNumber = cardNumber;
+    setCard(cardData);
   };
+  const handleSubmit = () => {
+    setSubmitted(true);
+  };
+
   return (
     <>
-      <Cards formData={formData} />
-      <Form onSubmit={handleSubmit}/>
+      <Cards formData={card} />
+      {submitted == false ? <Form onUpdate={handleUpdate} onSub={handleSubmit}/> : <Complete />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

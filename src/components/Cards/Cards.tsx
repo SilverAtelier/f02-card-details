@@ -22,17 +22,16 @@ const Cards: React.FC<CardsProps> = ({ formData }) => {
           <div className="card-details">
             <div className="card-details-upper">
               <p className="card-number-front">
-                {formData.cardNumber ?? CARD_DEFAULTS.cardNumber}
+                {formData.cardNumber === '' ? CARD_DEFAULTS.cardNumber : formData.cardNumber}
               </p>
             </div>
             <div className="card-details-lower">
               <span className="card-holder">
-                {formData.cardHolder ?? CARD_DEFAULTS.cardHolder}
+                {formData.cardHolder === '' ? CARD_DEFAULTS.cardHolder : formData.cardHolder}
               </span>
               <span className="card-expiry">
-                {(formData.cardExpMonth ?? CARD_DEFAULTS.cardExpMonth) +
-                  '/' +
-                  (formData.cardExpYear ?? CARD_DEFAULTS.cardExpYear)}
+                {(formData.cardExpMonth === '' ? CARD_DEFAULTS.cardExpMonth : formData.cardExpMonth) +
+                  '/' + (formData.cardExpYear === '' ? CARD_DEFAULTS.cardExpYear : formData.cardExpYear)}
               </span>
             </div>
           </div>
@@ -41,7 +40,7 @@ const Cards: React.FC<CardsProps> = ({ formData }) => {
           <img src={card2img} alt="card" />
           <div className="card-number-back">
             <span className="card-number-back-text">
-              {formData.cardCvc ?? CARD_DEFAULTS.cardCvc}
+              {formData.cardCvc === '' ? CARD_DEFAULTS.cardCvc : formData.cardCvc}
             </span>
           </div>
         </div>

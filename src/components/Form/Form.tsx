@@ -1,26 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../Button/Button";
 import { UserDetails } from "../../constants";
 
-
 type FormProps = {
-    onSubmit: (formData: UserDetails) => void;
+    onUpdate: (formData: UserDetails) => void;
+    onSub: () => void;
 };
 
-const Form: React.FC<FormProps> = ({ onSubmit }) => {
-
-    const [errName, setErrName] = useState(false);
-    const [errCardNumber, setErrCardNumber] = useState('');
-    const [errExpMonth, setErrExpMonth] = useState('');
-    const [errExpYear, setErrExpYear] = useState('');
-    const [errCvc, setErrCvc] = useState('');
-
-    const blank = "Can't be blank";
-    const wrongFormat = "Wrong format, numbers only";
-    const numbersOnly = "Numbers only";
-    const wrongMonth = "Wrong month";
-    const expired = "Expired";
-
+const Form: React.FC<FormProps> = ({ onUpdate, onSub }) => {
     const [formData, setFormData] = useState<UserDetails>({
         cardHolder: "",
         cardNumber: "",
@@ -29,125 +16,74 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         cardCvc: "",
     });
 
+    const [errors, setErrors] = useState<Partial<UserDetails>>({});
+
     const checkFields = () => {
-        if (!formData.cardHolder) {
-            setErrName(true);
+        const newErrors: Partial<UserDetails> = {};
+
+        if (!formData.cardHolder.trim()) {
+            newErrors.cardHolder = "Can't be blank";
         }
-        if (formData.cardNumber) {
 
-            const cardNumber = formData.cardNumber.toString().replace(/\s/g, "");
-            const regex = /^[0-9]*$/;
-            if (!regex.test(cardNumber)) {
-                setErrCardNumber(wrongFormat);
-                return;
-            }
-            formData.cardNumber = cardNumber;
-            if (cardNumber.length !== 16) {
-                setErrCardNumber('Sixteen digits only');
-                return;
-            }
-        }else{
-            setErrCardNumber(blank);
+        const cardNumber = formData.cardNumber.replace(/\s/g, "");
+        const regex = /^[0-9]*$/;
+        if (!cardNumber) {
+            newErrors.cardNumber = "Can't be blank";
+        }else if (!regex.test(cardNumber)) {
+            newErrors.cardNumber = "Wrong format, only numbers allowed";
         }
-        if (formData.cardExpMonth) {
-
-            const cardExpMonth = formData.cardExpMonth;
-            const regex = /^[0-9]*$/;
-            if (!regex.test(cardExpMonth)) {
-                setErrExpMonth(numbersOnly);
-            }
-
-            if (cardExpMonth.length < 1) {
-                setErrExpMonth(wrongMonth);
-            }
-
-            if (parseInt(cardExpMonth) > 12) {
-                setErrExpMonth(wrongMonth);
-            }
-        }else{
-            setErrExpMonth(blank);
+        const cardExpMonth = formData.cardExpMonth;
+        if (!cardExpMonth ) {
+            newErrors.cardExpMonth = "Can't be blank";
+        } else if (!regex.test(cardExpMonth)) {
+            newErrors.cardExpMonth = "Numbers Only";
+        }else if (parseInt(cardExpMonth) > 12 || parseInt(cardExpMonth) < 1) {
+            newErrors.cardExpMonth = "Invalid Month";
         }
-        if (formData.cardExpYear) {
 
-            const cardExpYear = formData.cardExpYear;
-            const regex = /^[0-9]*$/;
-            if (!regex.test(cardExpYear)) {
-                setErrExpYear(numbersOnly);
-            }
-
-            const currentYear = new Date().getFullYear();
-            const currentYearLastDigits = currentYear.toString().slice(-2);
-            if (parseInt(cardExpYear) < parseInt(currentYearLastDigits)) {
-                setErrExpYear(expired);
-            }
-        }else
-        {
-            setErrExpYear(blank);
+        const cardExpYear = formData.cardExpYear;
+        const currentYear = new Date().getFullYear();
+        const currentYearLastDigits = currentYear.toString().slice(-2);
+        if (!cardExpYear) {
+            newErrors.cardExpYear = "Can't be blank";
+        }else if (!regex.test(cardExpYear)) {
+            newErrors.cardExpYear = "Numbers Only";
+        }else if (parseInt(cardExpYear) < parseInt(currentYearLastDigits)) {
+            newErrors.cardExpYear = "Expired";
         }
-        if (formData.cardCvc) {
 
-            const cardCvc = formData.cardCvc;
-            const regex = /^[0-9]*$/;
-            if (!regex.test(cardCvc)) {
-                setErrCvc(numbersOnly);
-            }
-
-            if (cardCvc.length !== 3) {
-                setErrCvc('Three digits only');
-            }
-        }else{
-            setErrCvc(blank);
-            return;
+        const cardCvc = formData.cardCvc;
+        if (!cardCvc) {
+            newErrors.cardCvc = "Can't be blank";
+        }else if (!regex.test(cardCvc)) {
+            newErrors.cardCvc = "Numbers Only";
         }
-        return true;
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
         if (checkFields()) {
-            console.log(formData);
+            onUpdate(formData);
+            onSub();
+            // console.log(formData);
         }
-        return;
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let cardNumber = "";
-        //formatting card number
-        if (e.target.name === "cardNumber") {
-            cardNumber = e.target.value;
-            cardNumber = cardNumber.replace(/\s/g, "");
-            cardNumber = cardNumber.replace(/(\d{4})/g, "$1 ");
-            cardNumber = cardNumber.trim();
-            e.target.value = cardNumber;
-        }
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value,
         });
-        setFormData((updatedFormData) => {
-            onSubmit(updatedFormData);
-            cardNumber = "";
-            return updatedFormData;
-        });
-        //resetting errors
-        if (name === "cardHolder") {
-            setErrName(false);
-        }
-        if (name === "cardNumber") {
-            setErrCardNumber("");
-        }
-        if (name === "cardExpMonth") {
-            setErrExpMonth("");
-        }
-        if (name === "cardExpYear") {
-            setErrExpYear("");
-        }
-        if (name === "cardCvc") {
-            setErrCvc("");
-        }
-    }
+    };
 
+    useEffect(() => {
+        onUpdate(formData);
+    }, [formData, onUpdate]);
 
     return (
         <div className="form-wrapper">
@@ -162,7 +98,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
                         onChange={handleChange}
                         required
                     />
-                    {errName && <p className="err-text">Can't be blank</p>}
+                    {errors.cardHolder && <p className="err-text">{errors.cardHolder}</p>}
                 </div>
                 <div className="form-card-number">
                     <label htmlFor="card-number">Card Number</label>
@@ -172,10 +108,10 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
                         id="card-number"
                         placeholder="e.g. 1234 5678 9123 0000"
                         onChange={handleChange}
-                        maxLength={19}
+                        maxLength={16}
                         required
                     />
-                    {errCardNumber && <p className="err-text">{errCardNumber}</p>}
+                    {errors.cardNumber && <p className="err-text">{errors.cardNumber}</p>}
                 </div>
                 <div className="form-card-exp-cvc">
                     <div className="form-card-exp">
@@ -200,7 +136,9 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
                                 required
                             />
                         </div>
-                        {( errExpMonth || errExpYear) && <p className="err-text">{errExpMonth || errExpYear}</p>}
+                        {(errors.cardExpMonth || errors.cardExpYear) && (
+                            <p className="err-text">{errors.cardExpMonth || errors.cardExpYear}</p>
+                        )}
                     </div>
                     <div className="form-card-cvc">
                         <label htmlFor="card-cvc">CVC</label>
@@ -213,11 +151,11 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
                             maxLength={3}
                             required
                         />
-                        {errCvc && <p className="err-text">{errCvc}</p>}
+                        {errors.cardCvc && <p className="err-text">{errors.cardCvc}</p>}
                     </div>
                 </div>
                 <div className="form-submit">
-                    <Button classname="formBtn" text="Confirm" onClick={handleSubmit} />
+                    <Button classname="formBtn" text="Confirm" type="submit" onClick={checkFields}/>
                 </div>
             </form>
             <div className="attribution">
